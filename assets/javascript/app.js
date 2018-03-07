@@ -5,16 +5,19 @@ $(".btn-primary").hide();
 timer();
 mainPage();
 endPage()
+answerCheck()
 });
 
 // declare variables
 var correct = 0;
 var incorrect = 0;
-var time
+var unanswered = 0;
+var time;
 var timecounter = 100;
 var userAnswer;
 var correctAnswer = ["Thyroid Gland", "Erythrocyte", "23", "4", "Apoptosis"];
 var userAnswers = [];
+
 
 // create timer conditions
 
@@ -35,26 +38,46 @@ function timer() {
 
 };
 
-$("#container").on("click", ".checkbox-inline", function(event)  {
 
-    userAnswer = $(this).text();
+// check if answer is right or wrong when box is checked
+$("#container").on("click", ".checkbox-inline", function(event)  {
+    
+    userAnswer = $(this).text().trim();
     console.log(userAnswer);
     userAnswers.push(userAnswer);
     console.log(userAnswers)
-
-    for(j = 0; j < userAnswers.length; j++) {
-   
+    
+    
+})
+    
+//labels and names
+//function build answer array
+// compare two array
+   //var ans1 = "Thyroid Gland"
+   //console.log(ans1)
+     
+  function answerCheck() {  
+    //for(j = 0; j < userAnswers.length; j++) {
     for (i = 0; i < correctAnswer.length; i++) {
-        if (userAnswers[j] === correctAnswer[i]) {
+        if (userAnswers[i] === correctAnswer[i]) {
             console.log("right")
+            correct++;
+            {break;}
             
         } 
     
-        else{console.log("wrong")}
+         else {
+             console.log("wrong")
+             incorrect++
+             {break;}
+             
+
+        }
             
-    }
-    }  
-})
+    
+    //}
+}  
+  }
 
 
 
@@ -114,7 +137,7 @@ function endPage() {
     $(".btn-primary").on("click", function () {
         
        //var submit = true
-        html = "<h2>Finished!</h2> <br><h4>Correct Answers: <br><h4>Incorrect Answers: </h4><br><h4>Unanswered: </h4>";
+        html = "<h2>Finished!</h2> <br><h4>Correct Answers: " + correct + "<br><h4>Incorrect Answers: " + incorrect + "</h4><br><h4>Unanswered: " + unanswered + "</h4>";
 
      $(".questionPage").html(html);
 
@@ -123,7 +146,7 @@ function endPage() {
 
 function timeout() {
 
-    html = "<h2>Finished!</h2> <br><h4>Correct Answers: <br><h4>Incorrect Answers: </h4><br><h4>Unanswered: </h4>";
+    html = "<h2>Finished!</h2> <br><h4>Correct Answers: " + correct + "<br><h4>Incorrect Answers: " + incorrect + "</h4><br><h4>Unanswered: " + unanswered + "</h4>";
 
      $(".questionPage").html(html);
 }
