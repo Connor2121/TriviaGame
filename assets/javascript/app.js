@@ -5,7 +5,7 @@ $(".btn-primary").hide();
 timer();
 mainPage();
 endPage()
-answerCheck()
+
 });
 
 // declare variables
@@ -39,14 +39,14 @@ function timer() {
 };
 
 
-// check if answer is right or wrong when box is checked
+    // User answer
 $("#container").on("click", ".checkbox-inline", function(event)  {
     
     userAnswer = $(this).text().trim();
     console.log(userAnswer);
-    userAnswers.push(userAnswer);
-    console.log(userAnswers)
-    
+   //userAnswers.push(userAnswer);
+    //console.log(userAnswers)
+    answerCheck();
     
 })
     
@@ -55,29 +55,25 @@ $("#container").on("click", ".checkbox-inline", function(event)  {
 // compare two array
    //var ans1 = "Thyroid Gland"
    //console.log(ans1)
-     
+    
+   // check if answer is right or wrong when box is checked 
   function answerCheck() {  
     //for(j = 0; j < userAnswers.length; j++) {
     for (i = 0; i < correctAnswer.length; i++) {
-        if (userAnswers[i] === correctAnswer[i]) {
+        if (userAnswer === correctAnswer[i]) {
             console.log("right")
             correct++;
-            {break;}
-            
-        } 
+            break
+             } 
     
          else {
              console.log("wrong")
              incorrect++
-             {break;}
-             
-
-        }
-            
+             }
+    }  
     
-    //}
-}  
   }
+//}
 
 
 
