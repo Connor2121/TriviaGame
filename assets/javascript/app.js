@@ -16,7 +16,7 @@ var time;
 var timecounter = 100;
 var userAnswer;
 var correctAnswer = ["Thyroid Gland", "Erythrocyte", "23", "4", "Apoptosis"];
-var userAnswers = [];
+
 
 
 // create timer conditions
@@ -44,11 +44,10 @@ $("#container").on("click", ".checkbox-inline", function(event)  {
     
     userAnswer = $(this).text().trim();
     console.log(userAnswer);
-   //userAnswers.push(userAnswer);
-    //console.log(userAnswers)
     answerCheck();
+   
     
-})
+});
     
 //labels and names
 //function build answer array
@@ -59,18 +58,22 @@ $("#container").on("click", ".checkbox-inline", function(event)  {
    // check if answer is right or wrong when box is checked 
   function answerCheck() {  
     //for(j = 0; j < userAnswers.length; j++) {
-    for (i = 0; i < correctAnswer.length; i++) {
+        var found = false;
+    for (i = 0; i < correctAnswer.length; i++) {    
         if (userAnswer === correctAnswer[i]) {
-            console.log("right")
-            correct++;
-            break
-             } 
-    
-         else {
-             console.log("wrong")
-             incorrect++
-             }
+            found = true;
+            break;
+         } 
     }  
+    if (found) {
+        console.log("right");
+        correct++;
+    } else {
+        console.log("wrong");
+        incorrect++;
+    }
+
+    
     
   }
 //}
@@ -85,37 +88,37 @@ function mainPage() {
 html = "<h3>Time Remaining:  <div class = clock>" + timecounter + "</div></h3>" +
 "<h4>Which gland in the body regulates metabolism?" +
 "<br>" +
-    '<label class="checkbox-inline"><input type="checkbox" value=""> Adrenal Gland</label>' +
-    '<label class="checkbox-inline"><input type="checkbox" value=""> Thyroid Gland</label>' +
-    '<label class="checkbox-inline"><input type="checkbox" value=""> Pineal Gland</label>' +
+    '<label class="checkbox-inline"><input type="radio" name="glands" value=""> Adrenal Gland</label>' +
+    '<label class="checkbox-inline"><input type="radio" name="glands" value=""> Thyroid Gland</label>' +
+    '<label class="checkbox-inline"><input type="radio" name="glands" value=""> Pineal Gland</label>' +
 "</h4>" +
 
 "<h4>Which type of cells utilize the molecule Hemoglobin?" +
     "<br>" +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Erythrocyte</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Lymphocyte</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Basophil</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="cells" value=""> Erythrocyte</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="cells" value=""> Lymphocyte</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="cells" value=""> Basophil</label>' +
     "</h4>" +
 
     "<h4>How many pairs of chromosomes are found in the average human?" +
     "<br>" +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 23</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 46</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 22</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="number" value=""> 23</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="number" value=""> 46</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="number" value=""> 22</label>' +
     "</h4>" +
 
     "<h4>A human heart has how many chambers?" +
     "<br>" +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 3</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 2</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> 4</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="chambers" value=""> 3</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="chambers" value=""> 2</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="chambers" value=""> 4</label>' +
     "</h4>" +
 
     "<h4>Programmed cell death is also known as what?" +
     "<br>" +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Metastisis</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Angiogenesis</label>' +
-        '<label class="checkbox-inline"><input type="checkbox" value=""> Apoptosis</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="process" value=""> Metastisis</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="process" value=""> Angiogenesis</label>' +
+        '<label class="checkbox-inline"><input type="radio" name="process" value=""> Apoptosis</label>' +
     "</h4>" +
 
     '<div id = submit><button type="button" class="btn btn-primary btn-lg">Submit</button></div>';
